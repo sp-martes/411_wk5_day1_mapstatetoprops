@@ -1,19 +1,17 @@
 import React from 'react'
-import { Container, Paper, Chip } from '@material-ui/core';
-import cars from '../cars.json' // remove this
+import { Container, Paper, Chip } from '@material-ui/core'
 
 const Car = (props) => {
     const id = props.match.params.id
-    {/* Change cars to props.cars and remove the cars.json import above */}
-    const car = cars.find(c => c.id == id)
+    const car = props.cars.find(car => car.id == id)
 
     return (
         <Container maxWidth="sm" className="car-container">
             <Paper className="car-paper">
                 <h2>{car.Name}</h2>
                 {
-                    Object.keys(car).map((key, idx) => {
-                        return <Chip label={`${key}: ${car[key]}`}></Chip>
+                    Object.entries(car).map(([key,value]) => {
+                        return <Chip label={`${key}: ${value}`}></Chip>
                     })
                 }
             </Paper>
